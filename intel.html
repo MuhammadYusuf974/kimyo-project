@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Химия 8 класс</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
+
+body{
+  background:#0b1220;
+  color:white;
+}
+
+/* HEADER */
+header{
+  text-align:center;
+  padding:30px;
+  font-size:42px;
+  font-weight:bold;
+  background:#111827;
+  border-bottom:3px solid #2563eb;
+}
+
+/* MENU */
+.menu{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  padding:20px;
+  flex-wrap:wrap;
+}
+
+.menu button{
+  font-size:26px;
+  padding:20px 40px;
+  border:none;
+  border-radius:15px;
+  background:#1f2937;
+  color:white;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.menu button:hover{
+  background:#2563eb;
+}
+
+/* SCREEN */
+.screen{
+  display:none;
+  padding:40px;
+  text-align:center;
+}
+
+.active{
+  display:block;
+}
+
+/* TITLE */
+h2{
+  font-size:50px;
+  margin-bottom:30px;
+}
+
+/* BIG CARDS */
+.card{
+  font-size:30px;
+  padding:30px;
+  margin:20px auto;
+  width:70%;
+  background:#111827;
+  border-radius:20px;
+  cursor:pointer;
+  border-left:8px solid #2563eb;
+}
+
+/* QUIZ */
+.question{
+  font-size:40px;
+  margin-bottom:30px;
+}
+
+.answer{
+  display:block;
+  width:70%;
+  margin:15px auto;
+  padding:25px;
+  font-size:28px;
+  border:none;
+  border-radius:15px;
+  background:#1f2937;
+  color:white;
+  cursor:pointer;
+}
+
+.answer:hover{
+  background:#2563eb;
+}
+
+/* PROGRESS */
+.progress{
+  width:70%;
+  height:20px;
+  background:#1f2937;
+  margin:20px auto;
+  border-radius:10px;
+}
+
+.bar{
+  height:100%;
+  width:0%;
+  background:#22c55e;
+  border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>⚗️ ХИМИЯ 8 КЛАСС</header>
+
+<div class="menu">
+<button onclick="show('home')">Главная</button>
+<button onclick="show('topics')">Темы</button>
+<button onclick="show('quiz')">Тест</button>
+</div>
+
+<!-- HOME -->
+<div id="home" class="screen active">
+<h2>Добро пожаловать</h2>
+<p style="font-size:28px;opacity:0.8">
+Интерактивный урок химии
+</p>
+</div>
+
+<!-- TOPICS -->
+<div id="topics" class="screen">
+<h2>Темы урока</h2>
+
+<div class="card">Атомы и молекулы</div>
+<div class="card">Валентность</div>
+<div class="card">Химические реакции</div>
+<div class="card">Таблица Менделеева</div>
+
+</div>
+
+<!-- QUIZ -->
+<div id="quiz" class="screen">
+
+<h2>Тест</h2>
+
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<div class="question" id="q"></div>
+
+<div id="answers"></div>
+
+</div>
+
+<script>
+
+function show(id){
+ document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+}
+
+/* QUIZ */
+const q=[
+{
+ q:"Что такое атом?",
+ a:["Молекула","Частица вещества","Планета","Газ"],
+ c:1
+},
+{
+ q:"H2O это?",
+ a:["Кислород","Вода","Соль","Металл"],
+ c:1
+},
+{
+ q:"O это?",
+ a:["Водород","Кислород","Азот","Железо"],
+ c:1
+}
+];
+
+let i=0;
+let score=0;
+
+function load(){
+ let x=q[i];
+
+ document.getElementById("q").innerText=x.q;
+
+ let html="";
+ x.a.forEach((a,j)=>{
+  html+=`<button class="answer" onclick="ans(${j})">${a}</button>`;
+ });
+
+ document.getElementById("answers").innerHTML=html;
+}
+
+function ans(j){
+ if(j==q[i].c){
+  score++;
+  alert("✔ Верно");
+ }else{
+  alert("❌ Неверно");
+ }
+}
+
+function next(){
+ i++;
+
+ document.getElementById("bar").style.width=(i/q.length*100)+"%";
+
+ if(i<q.length){
+  load();
+ }
+}
+
+load();
+
+</script>
+
+</body>
+</html>
