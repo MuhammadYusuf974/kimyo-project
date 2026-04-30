@@ -6,7 +6,6 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 body{background:#020617;color:white}
 
-/* HEADER */
 header{
   text-align:center;
   padding:40px;
@@ -16,7 +15,6 @@ header{
   border-bottom:4px solid #3b82f6;
 }
 
-/* MENU */
 .menu{
   display:flex;
   justify-content:center;
@@ -35,11 +33,8 @@ header{
   cursor:pointer;
 }
 
-.menu button:hover{
-  background:#3b82f6;
-}
+.menu button:hover{background:#3b82f6;}
 
-/* SCREEN */
 .screen{display:none;text-align:center;padding:40px;}
 .active{display:block;}
 
@@ -54,11 +49,7 @@ h2{font-size:60px;margin-bottom:30px;}
   border-radius:20px;
 }
 
-/* QUIZ */
-.question{
-  font-size:50px;
-  margin-bottom:30px;
-}
+.question{font-size:50px;margin-bottom:30px;}
 
 .answer{
   display:block;
@@ -73,9 +64,7 @@ h2{font-size:60px;margin-bottom:30px;}
   cursor:pointer;
 }
 
-.answer:hover{
-  background:#3b82f6;
-}
+.answer:hover{background:#3b82f6;}
 
 .progress{
   width:70%;
@@ -95,54 +84,155 @@ h2{font-size:60px;margin-bottom:30px;}
 <button onclick="show('home')">Главная</button>
 <button onclick="show('topics')">Темы</button>
 <button onclick="show('quiz')">Тест</button>
-</div><!-- HOME --><div id="home" class="screen active">
+</div><div id="home" class="screen active">
 <h2>Добро пожаловать</h2>
 <p style="font-size:35px;opacity:0.8">
-Интерактивный урок химии для 8 класса
+Интерактивный урок химии
 </p>
-</div><!-- TOPICS --><div id="topics" class="screen">
+</div><div id="topics" class="screen">
 <h2>Темы</h2>
 <div class="card">Атомы и молекулы</div>
 <div class="card">Валентность</div>
-<div class="card">Химические реакции</div>
-<div class="card">Таблица Менделеева</div>
-</div><!-- QUIZ --><div id="quiz" class="screen">
+<div class="card">Реакции</div>
+<div class="card">Менделеев</div>
+</div><div id="quiz" class="screen">
 <h2>Тест</h2><div class="progress"><div class="bar" id="bar"></div></div><div class="question" id="q"></div>
-<div id="answers"></div>
-</div><script>
+<div id="answers"></div></div><script>
 
-/* NAV */
 function show(id){
  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
  document.getElementById(id).classList.add("active");
 }
 
-/* QUESTIONS (20 TA 🔥) */
+/* QUESTIONS */
 const q=[
 {q:"Что такое атом?",a:["Молекула","Частица вещества","Газ","Планета"],c:1},
 {q:"H2O это?",a:["Кислород","Вода","Металл","Соль"],c:1},
-{q:"O это?",a:["Водород","Кислород","Азот","Железо"],c:1},
 {q:"NaCl это?",a:["Сахар","Соль","Вода","Газ"],c:1},
-{q:"CO2 это?",a:["Кислород","Углекислый газ","Азот","Металл"],c:1},
+{q:"CO2 это?",a:["Газ","Металл","Жидкость","Соль"],c:0},
 {q:"Самый легкий элемент?",a:["Кислород","Водород","Железо","Азот"],c:1},
-{q:"Fe это?",a:["Золото","Железо","Серебро","Вода"],c:1},
-{q:"H это?",a:["Водород","Кислород","Азот","Углерод"],c:0},
-{q:"Сколько элементов в таблице?",a:["50","118","10","200"],c:1},
+{q:"Fe это?",a:["Золото","Железо","Серебро","Газ"],c:1},
+{q:"Au это?",a:["Золото","Серебро","Газ","Кислород"],c:0},
+{q:"N это?",a:["Азот","Кислород","Водород","Металл"],c:0},
+{q:"O это?",a:["Кислород","Водород","Азот","Железо"],c:0},
 {q:"pH 7 это?",a:["Кислота","Щелочь","Нейтрально","Газ"],c:2},
-{q:"O2 это?",a:["Газ","Жидкость","Металл","Соль"],c:0},
-{q:"Au это?",a:["Золото","Серебро","Железо","Кислород"],c:0},
-{q:"N это?",a:["Азот","Кислород","Водород","Железо"],c:0},
-{q:"CH4 это?",a:["Метан","Вода","Соль","Кислород"],c:0},
-{q:"Mg это?",a:["Магний","Железо","Кислород","Азот"],c:0},
-{q:"Ca это?",a:["Кальций","Соль","Газ","Жидкость"],c:0},
-{q:"SO2 это?",a:["Газ","Металл","Вода","Соль"],c:0},
+{q:"CH4 это?",a:["Метан","Вода","Соль","Газ"],c:0},
+{q:"Ca это?",a:["Кальций","Газ","Соль","Жидкость"],c:0},
+{q:"Mg это?",a:["Магний","Железо","Газ","Вода"],c:0},
 {q:"Cl это?",a:["Хлор","Кислород","Азот","Железо"],c:0},
-{q:"He это?",a:["Гелий","Кислород","Азот","Металл"],c:0},
-{q:"Zn это?",a:["Цинк","Железо","Золото","Газ"],c:0}
+{q:"He это?",a:["Гелий","Газ","Вода","Металл"],c:0},
+{q:"Zn это?",a:["Цинк","Газ","Соль","Вода"],c:0},
+{q:"Какой газ нужен для дыхания?",a:["Кислород","Азот","CO2","Гелий"],c:0},
+{q:"Какой газ выдыхаем?",a:["CO2","O2","H2","He"],c:0},
+{q:"Лёд это?",a:["Твердый","Жидкость","Газ","Металл"],c:0},
+{q:"Пар это?",a:["Газ","Жидкость","Твердый","Металл"],c:0}
 ];
+
+
+  /* QUESTIONS 40+ 🔥 */
+const q=[
+{q:"Что такое атом?",a:["Молекула","Частица вещества","Газ","Планета"],c:1},
+{q:"H2O это?",a:["Кислород","Вода","Металл","Соль"],c:1},
+{q:"NaCl это?",a:["Сахар","Соль","Вода","Газ"],c:1},
+{q:"CO2 это?",a:["Газ","Металл","Жидкость","Соль"],c:0},
+{q:"Самый легкий элемент?",a:["Кислород","Водород","Железо","Азот"],c:1},
+{q:"Fe это?",a:["Золото","Железо","Серебро","Газ"],c:1},
+{q:"Au это?",a:["Золото","Серебро","Газ","Кислород"],c:0},
+{q:"N это?",a:["Азот","Кислород","Водород","Металл"],c:0},
+{q:"O это?",a:["Кислород","Водород","Азот","Железо"],c:0},
+{q:"pH 7 это?",a:["Кислота","Щелочь","Нейтрально","Газ"],c:2},
+{q:"CH4 это?",a:["Метан","Вода","Соль","Газ"],c:0},
+{q:"Ca это?",a:["Кальций","Газ","Соль","Жидкость"],c:0},
+{q:"Mg это?",a:["Магний","Железо","Газ","Вода"],c:0},
+{q:"Cl это?",a:["Хлор","Кислород","Азот","Железо"],c:0},
+{q:"He это?",a:["Гелий","Газ","Вода","Металл"],c:0},
+{q:"Zn это?",a:["Цинк","Газ","Соль","Вода"],c:0},
+{q:"Cu это?",a:["Медь","Газ","Кислород","Вода"],c:0},
+{q:"Ag это?",a:["Серебро","Золото","Газ","Вода"],c:0},
+{q:"Pb это?",a:["Свинец","Газ","Металл","Вода"],c:0},
+{q:"K это?",a:["Калий","Азот","Кислород","Железо"],c:0},
+
+{q:"H это?",a:["Водород","Кислород","Азот","Металл"],c:0},
+{q:"O2 это?",a:["Газ","Жидкость","Металл","Соль"],c:0},
+{q:"CO это?",a:["Газ","Металл","Вода","Соль"],c:0},
+{q:"HCl это?",a:["Кислота","Газ","Металл","Соль"],c:0},
+{q:"Na это?",a:["Натрий","Газ","Вода","Соль"],c:0},
+{q:"Al это?",a:["Алюминий","Газ","Кислород","Вода"],c:0},
+{q:"Si это?",a:["Кремний","Газ","Соль","Вода"],c:0},
+{q:"P это?",a:["Фосфор","Газ","Металл","Вода"],c:0},
+{q:"S это?",a:["Сера","Газ","Металл","Вода"],c:0},
+{q:"Br это?",a:["Бром","Газ","Металл","Вода"],c:0},
+{q:"I это?",a:["Йод","Газ","Металл","Вода"],c:0},
+
+{q:"Какой газ нужен для дыхания?",a:["Кислород","Азот","CO2","Гелий"],c:0},
+{q:"Какой газ выдыхаем?",a:["CO2","O2","H2","He"],c:0},
+{q:"Вода это?",a:["Жидкость","Газ","Металл","Соль"],c:0},
+{q:"Соль растворяется в воде?",a:["Да","Нет","Иногда","Никогда"],c:0},
+{q:"Железо ржавеет?",a:["Да","Нет","Иногда","Никогда"],c:0},
+{q:"Огонь это?",a:["Реакция","Вода","Газ","Металл"],c:0},
+{q:"Лёд это?",a:["Твердый","Жидкость","Газ","Металл"],c:0},
+{q:"Пар это?",a:["Газ","Жидкость","Твердый","Металл"],c:0}
+];
+
+/* RANDOM 🔥 */
+q.sort(()=>Math.random()-0.5);
 
 let i=0;
 let score=0;
+let streak=0;
+let lock=false;
+
+/* LOAD */
+function load(){
+lock=false;
+let x=q[i];
+document.getElementById("q").innerText=x.q;
+
+let html="";
+x.a.forEach((a,j)=>{
+html+="<button class="answer" onclick="ans(${j})">${a}</button>";
+});
+
+document.getElementById("answers").innerHTML=html;
+}
+
+/* ANSWER */
+function ans(j){
+if(lock) return;
+lock=true;
+
+if(j==q[i].c){
+score++;
+streak++;
+}else{
+streak=0;
+}
+
+setTimeout(next,400);
+}
+
+/* NEXT /
+function next(){
+i++;
+document.getElementById("bar").style.width=(i/q.length100)+"%";
+
+if(i<q.length){
+load();
+}else{
+document.getElementById("q").innerText="Игра окончена!";
+document.getElementById("answers").innerHTML=
+"<h3 style='font-size:40px'>Очки: "+score+" / "+q.length+
+"<br>🔥 Серия: "+streak+"</h3>";
+}
+}
+
+load();
+/* RANDOM */
+q.sort(()=>Math.random()-0.5);
+
+let i=0;
+let score=0;
+let streak=0;
 let lock=false;
 
 /* LOAD */
@@ -166,9 +256,12 @@ function ans(j){
 
  if(j==q[i].c){
   score++;
+  streak++;
+ }else{
+  streak=0;
  }
 
- setTimeout(next,500); // 🔥 avtomatik keyingi savol
+ setTimeout(next,400);
 }
 
 /* NEXT */
@@ -179,9 +272,10 @@ function next(){
  if(i<q.length){
   load();
  }else{
-  document.getElementById("q").innerText="Тест закончен!";
+  document.getElementById("q").innerText="Игра окончена!";
   document.getElementById("answers").innerHTML=
-  "<h3 style='font-size:50px'>Результат: "+score+" / "+q.length+"</h3>";
+  "<h3 style='font-size:50px'>Очки: "+score+" / "+q.length+
+  "<br>🔥 Серия: "+streak+"</h3>";
  }
 }
 
