@@ -18,7 +18,6 @@ body{
   color:white;
 }
 
-/* HEADER */
 header{
   text-align:center;
   padding:30px;
@@ -28,7 +27,6 @@ header{
   border-bottom:3px solid #2563eb;
 }
 
-/* MENU */
 .menu{
   display:flex;
   justify-content:center;
@@ -45,14 +43,12 @@ header{
   background:#1f2937;
   color:white;
   cursor:pointer;
-  transition:0.2s;
 }
 
 .menu button:hover{
   background:#2563eb;
 }
 
-/* SCREEN */
 .screen{
   display:none;
   padding:40px;
@@ -63,13 +59,11 @@ header{
   display:block;
 }
 
-/* TITLE */
 h2{
   font-size:50px;
   margin-bottom:30px;
 }
 
-/* BIG CARDS */
 .card{
   font-size:30px;
   padding:30px;
@@ -77,11 +71,9 @@ h2{
   width:70%;
   background:#111827;
   border-radius:20px;
-  cursor:pointer;
   border-left:8px solid #2563eb;
 }
 
-/* QUIZ */
 .question{
   font-size:40px;
   margin-bottom:30px;
@@ -104,7 +96,6 @@ h2{
   background:#2563eb;
 }
 
-/* PROGRESS */
 .progress{
   width:70%;
   height:20px;
@@ -119,7 +110,6 @@ h2{
   background:#22c55e;
   border-radius:10px;
 }
-
 </style>
 </head>
 
@@ -133,7 +123,6 @@ h2{
 <button onclick="show('quiz')">Тест</button>
 </div>
 
-<!-- HOME -->
 <div id="home" class="screen active">
 <h2>Добро пожаловать</h2>
 <p style="font-size:28px;opacity:0.8">
@@ -141,7 +130,6 @@ h2{
 </p>
 </div>
 
-<!-- TOPICS -->
 <div id="topics" class="screen">
 <h2>Темы урока</h2>
 
@@ -152,7 +140,6 @@ h2{
 
 </div>
 
-<!-- QUIZ -->
 <div id="quiz" class="screen">
 
 <h2>Тест</h2>
@@ -214,6 +201,8 @@ function ans(j){
  }else{
   alert("❌ Неверно");
  }
+
+ next(); // 🔥 keyingi savolga o'tadi
 }
 
 function next(){
@@ -223,6 +212,10 @@ function next(){
 
  if(i<q.length){
   load();
+ }else{
+  document.getElementById("q").innerText="Тест закончен!";
+  document.getElementById("answers").innerHTML=
+  "<h3>Ваш результат: "+score+" / "+q.length+"</h3>";
  }
 }
 
