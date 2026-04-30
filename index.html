@@ -1,81 +1,62 @@
-<!DOCTYPE html>
-<html lang="ru">
+<!DOCTYPE html><html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Химия 8 класс</title>
+<title>Химия 8 класс</title><style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#020617;color:white}
 
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: Arial, sans-serif;
-}
-
-body{
-  background:#0b1220;
-  color:white;
-}
-
+/* HEADER */
 header{
   text-align:center;
-  padding:30px;
-  font-size:42px;
+  padding:40px;
+  font-size:60px;
   font-weight:bold;
-  background:#111827;
-  border-bottom:3px solid #2563eb;
+  background:#0f172a;
+  border-bottom:4px solid #3b82f6;
 }
 
+/* MENU */
 .menu{
   display:flex;
   justify-content:center;
-  gap:20px;
-  padding:20px;
+  gap:30px;
+  padding:30px;
   flex-wrap:wrap;
 }
 
 .menu button{
-  font-size:26px;
+  font-size:30px;
   padding:20px 40px;
   border:none;
-  border-radius:15px;
-  background:#1f2937;
+  border-radius:20px;
+  background:#1e293b;
   color:white;
   cursor:pointer;
 }
 
 .menu button:hover{
-  background:#2563eb;
+  background:#3b82f6;
 }
 
-.screen{
-  display:none;
-  padding:40px;
-  text-align:center;
-}
+/* SCREEN */
+.screen{display:none;text-align:center;padding:40px;}
+.active{display:block;}
 
-.active{
-  display:block;
-}
-
-h2{
-  font-size:50px;
-  margin-bottom:30px;
-}
+h2{font-size:60px;margin-bottom:30px;}
 
 .card{
-  font-size:30px;
+  font-size:35px;
   padding:30px;
   margin:20px auto;
   width:70%;
-  background:#111827;
+  background:#0f172a;
   border-radius:20px;
-  border-left:8px solid #2563eb;
 }
 
+/* QUIZ */
 .question{
-  font-size:40px;
+  font-size:50px;
   margin-bottom:30px;
 }
 
@@ -84,106 +65,90 @@ h2{
   width:70%;
   margin:15px auto;
   padding:25px;
-  font-size:28px;
+  font-size:30px;
   border:none;
-  border-radius:15px;
-  background:#1f2937;
+  border-radius:20px;
+  background:#1e293b;
   color:white;
   cursor:pointer;
 }
 
 .answer:hover{
-  background:#2563eb;
+  background:#3b82f6;
 }
 
 .progress{
   width:70%;
-  height:20px;
-  background:#1f2937;
+  height:25px;
+  background:#1e293b;
   margin:20px auto;
-  border-radius:10px;
+  border-radius:20px;
 }
 
 .bar{
   height:100%;
   width:0%;
   background:#22c55e;
-  border-radius:10px;
+  border-radius:20px;
 }
-</style>
-</head>
-
-<body>
-
-<header>⚗️ ХИМИЯ 8 КЛАСС</header>
-
-<div class="menu">
+</style></head><body><header>⚗️ ХИМИЯ 8 КЛАСС</header><div class="menu">
 <button onclick="show('home')">Главная</button>
 <button onclick="show('topics')">Темы</button>
 <button onclick="show('quiz')">Тест</button>
-</div>
-
-<div id="home" class="screen active">
+</div><!-- HOME --><div id="home" class="screen active">
 <h2>Добро пожаловать</h2>
-<p style="font-size:28px;opacity:0.8">
-Интерактивный урок химии
+<p style="font-size:35px;opacity:0.8">
+Интерактивный урок химии для 8 класса
 </p>
-</div>
-
-<div id="topics" class="screen">
-<h2>Темы урока</h2>
-
+</div><!-- TOPICS --><div id="topics" class="screen">
+<h2>Темы</h2>
 <div class="card">Атомы и молекулы</div>
 <div class="card">Валентность</div>
 <div class="card">Химические реакции</div>
 <div class="card">Таблица Менделеева</div>
-
-</div>
-
-<div id="quiz" class="screen">
-
-<h2>Тест</h2>
-
-<div class="progress"><div class="bar" id="bar"></div></div>
-
-<div class="question" id="q"></div>
-
+</div><!-- QUIZ --><div id="quiz" class="screen">
+<h2>Тест</h2><div class="progress"><div class="bar" id="bar"></div></div><div class="question" id="q"></div>
 <div id="answers"></div>
+</div><script>
 
-</div>
-
-<script>
-
+/* NAV */
 function show(id){
  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
  document.getElementById(id).classList.add("active");
 }
 
-/* QUIZ */
+/* QUESTIONS (20 TA 🔥) */
 const q=[
-{
- q:"Что такое атом?",
- a:["Молекула","Частица вещества","Планета","Газ"],
- c:1
-},
-{
- q:"H2O это?",
- a:["Кислород","Вода","Соль","Металл"],
- c:1
-},
-{
- q:"O это?",
- a:["Водород","Кислород","Азот","Железо"],
- c:1
-}
+{q:"Что такое атом?",a:["Молекула","Частица вещества","Газ","Планета"],c:1},
+{q:"H2O это?",a:["Кислород","Вода","Металл","Соль"],c:1},
+{q:"O это?",a:["Водород","Кислород","Азот","Железо"],c:1},
+{q:"NaCl это?",a:["Сахар","Соль","Вода","Газ"],c:1},
+{q:"CO2 это?",a:["Кислород","Углекислый газ","Азот","Металл"],c:1},
+{q:"Самый легкий элемент?",a:["Кислород","Водород","Железо","Азот"],c:1},
+{q:"Fe это?",a:["Золото","Железо","Серебро","Вода"],c:1},
+{q:"H это?",a:["Водород","Кислород","Азот","Углерод"],c:0},
+{q:"Сколько элементов в таблице?",a:["50","118","10","200"],c:1},
+{q:"pH 7 это?",a:["Кислота","Щелочь","Нейтрально","Газ"],c:2},
+{q:"O2 это?",a:["Газ","Жидкость","Металл","Соль"],c:0},
+{q:"Au это?",a:["Золото","Серебро","Железо","Кислород"],c:0},
+{q:"N это?",a:["Азот","Кислород","Водород","Железо"],c:0},
+{q:"CH4 это?",a:["Метан","Вода","Соль","Кислород"],c:0},
+{q:"Mg это?",a:["Магний","Железо","Кислород","Азот"],c:0},
+{q:"Ca это?",a:["Кальций","Соль","Газ","Жидкость"],c:0},
+{q:"SO2 это?",a:["Газ","Металл","Вода","Соль"],c:0},
+{q:"Cl это?",a:["Хлор","Кислород","Азот","Железо"],c:0},
+{q:"He это?",a:["Гелий","Кислород","Азот","Металл"],c:0},
+{q:"Zn это?",a:["Цинк","Железо","Золото","Газ"],c:0}
 ];
 
 let i=0;
 let score=0;
+let lock=false;
 
+/* LOAD */
 function load(){
+ lock=false;
  let x=q[i];
-
  document.getElementById("q").innerText=x.q;
 
  let html="";
@@ -194,20 +159,21 @@ function load(){
  document.getElementById("answers").innerHTML=html;
 }
 
+/* ANSWER */
 function ans(j){
+ if(lock) return;
+ lock=true;
+
  if(j==q[i].c){
   score++;
-  alert("✔ Верно");
- }else{
-  alert("❌ Неверно");
  }
 
- next(); // 🔥 keyingi savolga o'tadi
+ setTimeout(next,500); // 🔥 avtomatik keyingi savol
 }
 
+/* NEXT */
 function next(){
  i++;
-
  document.getElementById("bar").style.width=(i/q.length*100)+"%";
 
  if(i<q.length){
@@ -215,13 +181,11 @@ function next(){
  }else{
   document.getElementById("q").innerText="Тест закончен!";
   document.getElementById("answers").innerHTML=
-  "<h3>Ваш результат: "+score+" / "+q.length+"</h3>";
+  "<h3 style='font-size:50px'>Результат: "+score+" / "+q.length+"</h3>";
  }
 }
 
 load();
 
-</script>
-
-</body>
+</script></body>
 </html>
